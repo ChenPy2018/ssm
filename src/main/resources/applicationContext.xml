@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/util 
+       http://www.springframework.org/schema/util/spring-util-4.0.xsd 
+       http://www.springframework.org/schema/mvc 
+       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+">
+	<!-- <import resource="config/*.xml"/> -->
+	<!-- 配置目标对象 -->
+	<bean id="Factory" class="com.neuedu.demo.Factory"></bean>
+	<!-- 配置增强对象 -->
+	<bean id="before" class="com.neuedu.newdemo.before"></bean>
+	<bean id="after" class="com.neuedu.newdemo.After"></bean>
+	<bean id="throw" class="com.neuedu.newdemo.Throw"></bean>
+	<!-- 代理对象 -->
+	<bean id="proxyFactory" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- 植入目标对象 -->
+		<property name="target" ref="Factory"></property>
+		<!-- 植入增强对象的名字 -->
+		<property name="interceptorNames" value="before,after,throw"></property>
+		<!-- 如果是面向接口，需要配置目标对象的接口 -->
+		<!-- <property name="proxyInterfaces" value="com.neuedu.demo.IFactory"></property> -->
+		<!-- 如果不是面向接口，用cglib -->
+		<property name="optimize" value="true"></property>
+	</bean>
+</beans>

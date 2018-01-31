@@ -1,0 +1,48 @@
+package com.neuedu.service.[bean];
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.neuedu.dao.[Bean]Dao;
+import com.neuedu.pojo.[Bean];
+
+@Service
+public class [Bean]ServiceImpl implements I[bean]Service {
+	@Autowired
+	private [Bean]Dao dao;
+
+	@Override
+	public List<[Bean]> get[Bean]s([Bean] [bean]) {
+		// TODO Auto-generated method stub
+		return dao.get[Bean]s([bean]);
+	}
+
+	@Override
+	public int add([Bean] [bean]) {
+		// TODO Auto-generated method stub
+		return dao.add([bean]);
+	}
+
+	@Override
+	public int update([Bean] [bean]) {
+		// TODO Auto-generated method stub
+		return dao.update([bean]);
+	}
+
+	@Override
+	public int del(int id) {
+		// TODO Auto-generated method stub
+		return dao.del(id);
+	}
+
+	@Override
+	public [Bean] get[Bean]ById([Bean] [bean]) {
+		// TODO Auto-generated method stub
+		return dao.get[Bean]ById([bean]);
+	}
+	
+}

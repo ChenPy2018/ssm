@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC   
+    "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.neuedu.dao.StudentDao">
+	<resultMap type="Student" id="StudentMap">
+		<result column="sno" property="sno"></result>
+		<result column="sname" property="sname"></result>
+		<result column="sage" property="sage"></result>
+		<result column="ssex" property="ssex"></result>
+		<result column="dept" property="dept"></result>
+	</resultMap>
+	<select id="getStudents" resultMap="StudentMap" parameterType="Student">
+		select sno,sname,sage,ssex,dept from student
+		<where>
+			<if test="sname!=null">
+				and sname like concat('%',#{sname},'%')
+			</if>
+		</where>
+	<if test="withPage==1">
+		limit #{pageStart},#{pageSize}
+	</if>
+	</select>
+
+	
+
+</mapper>
